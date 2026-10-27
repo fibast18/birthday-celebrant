@@ -52,14 +52,14 @@ import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, sendPasswordRe
 import { getFirestore, collection, doc, addDoc, setDoc, deleteDoc, getDoc, onSnapshot, serverTimestamp, writeBatch } from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js';
 
 const firebaseConfig = {
-  apiKey: 'PASTE_API_KEY',
-  authDomain: 'PASTE_PROJECT_ID.firebaseapp.com',
-  projectId: 'PASTE_PROJECT_ID',
-  appId: 'PASTE_APP_ID'
+  apiKey: 'AIzaSyD9ZqjuqJBmZZXOVeDxVSrjZYcLKrVnErw',
+  authDomain: 'birthday-celebrant-f5804.firebaseapp.com',
+  projectId: 'birthday-celebrant-f5804',
+  appId: '1:351179548236:web:49566ac4f3ef60801a76e9'
 };
 // Obtain this UID from Firebase Console > Authentication > Users.
 // Use EXACTLY this UID in the Firestore rules: owner checks are enforced by Firebase, not the UI.
-const ADMIN_UID = 'PASTE_YOUR_ADMIN_UID';
+const ADMIN_UID = 'LH2OEWTZUua2Bq6MTrLo14sJPO23';
 const $ = id => document.getElementById(id);
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const configured = !Object.values(firebaseConfig).some(x => !x || x.includes('PASTE_')) && ADMIN_UID !== 'PASTE_YOUR_ADMIN_UID' && Boolean(ADMIN_UID.trim());
