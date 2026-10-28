@@ -1,0 +1,18 @@
+{
+  "name": "Pono Family Birthday Hub",
+  "short_name": "PONO Birthdays",
+  "description": "Pono family birthdays and offline countdowns",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b1423",
+  "theme_color": "#101b30",
+  "icons": [
+    {
+      "src": "./pono-family-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
