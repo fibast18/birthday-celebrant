@@ -1,7 +1,7 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Pono Family Birthday Hub v1.1.15.
+    // Pono Family Birthday Hub v1.1.16.
     // Exact admin Firebase Authentication UID is preconfigured.
     // Birthdays are publicly readable; ONLY the administrator can change them.
     // WARNING: public reads expose full birthdates, even if hidden in the UI.

@@ -1,41 +1,32 @@
-PONO FAMILY BIRTHDAY HUB — v1.1.15 Generations Family Tree
-========================================================
+PONO FAMILY BIRTHDAY HUB — v1.1.16 Family Tree Relationship Corrections
+=================================================================
 
-WHAT'S NEW
-- Billy Pono (deceased, in loving memory) and Monica Pono appear together at the top.
-- Seven household branches, in the exact requested order: Maridel/Julito,
-  Resty/Narvee, Resty/Shyrel, Monilly/James, Bernardo/Maricar,
-  Bernardo/Analyn, Rico/Mary Ann.
-- Children, known partners and grandchildren are visually grouped beneath
-  their household. Current birthday records are matched by exact name.
-- People not yet in birthday records (e.g., Shyrel if missing) appear as
-  placeholders, NOT newly created Firebase records.
-- Additional relatives not placed in the above seven branches are still listed.
-- Existing administrator-confirmed relationships remain under an expandable
-  saved-connections diagram. New visual arrangement does not automatically
-  write new connections to Firebase.
+CUMULATIVE CHANGES
+- Branch 03 is "Resty & May Sheryl", with Resty Pono and May Sheryl Mejia
+  displayed as a couple, and "No children yet." No Shyrel Pono placeholder.
+- In Branch 04 "Monilly & James", the four children/siblings are:
+  Christopher Mastin, Nicholas Reiner, Jake Reiner, and Chase Reiner.
+- Christopher Mastin and Angus Mastin are presented together as a couple;
+  Angus is no longer displayed as a child of Monilly and James.
+- Billy (deceased) and Monica Pono remain at the top, and all seven
+  branches, birthdays, Birthday Fund, daily features, 3D clown, song,
+  Firebase config and read-only/public permissions remain unchanged.
 
-GITHUB PAGES
-Upload index.html, sw.js, manifest.webmanifest, pono-family-icon.png
-to the same repository folder, replacing the previous app shell.
+GITHUB PAGES UPDATE
+Upload all four application files to the GitHub Pages repo, replacing the old:
+  index.html, sw.js, manifest.webmanifest, pono-family-icon.png
+Use one online visit to install the new offline cache (v1.1.16).
 
-FIREBASE SECURITY RULES — IMPORTANT
-Open Firestore Database > Rules and publish the supplied firestore.rules
-(or merge its familyTree rules into your existing project rules if you host
-other apps). Version v1.1.14 Family Tree had two different packages; one
-restricted familyTree/{id} to a single document even though the app
-reads a collection of relationship documents. This v1.1.15 rules file
-correctly permits public read/list and owner-only write for the familyTree
-collection. No database deletion or migration is needed.
+FIREBASE
+No changes to the database, existing birthdays, rules, or confirmed
+Firestore family links are made by this package. The included firestore.rules
+is a reference copy with functionally identical rules to v1.1.15 and DOES NOT
+need republishing if that ruleset has already been published.
 
-PRIVACY
-The family birthdays and names are already public, and the family tree
-layout and confirmed relationships are also public on GitHub Pages.
-
-PRESERVED FEATURES
-Birthday Fund contribution matrix, birthday song, Daily Surprise gift
-opening animation, daily quizzes, 3D clown, search, offline viewing,
-Firebase config/admin UID, original logo and neon-yellow developer credit.
+The prominent family layout is based on family-supplied relationships, and it
+is visual only; it does not overwrite separately stored confirmed links. If
+any previously saved confirmed links are incorrect, review and remove them
+as administrator using "Connect family members" in the Family Tree tab.
 
 GITHUB COMMIT MESSAGE
-Pono Family Birthday Hub v1.1.15 - Generations Family Tree and Founders
+Pono Family Birthday Hub v1.1.16 - Correct Resty and Monilly Family Tree Branches
