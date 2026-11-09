@@ -1,32 +1,31 @@
-PONO FAMILY BIRTHDAY HUB — v1.1.16 Family Tree Relationship Corrections
-=================================================================
+PONO FAMILY BIRTHDAY HUB — v1.1.17 · DAILY LUCKY WHEEL
 
-CUMULATIVE CHANGES
-- Branch 03 is "Resty & May Sheryl", with Resty Pono and May Sheryl Mejia
-  displayed as a couple, and "No children yet." No Shyrel Pono placeholder.
-- In Branch 04 "Monilly & James", the four children/siblings are:
-  Christopher Mastin, Nicholas Reiner, Jake Reiner, and Chase Reiner.
-- Christopher Mastin and Angus Mastin are presented together as a couple;
-  Angus is no longer displayed as a child of Monilly and James.
-- Billy (deceased) and Monica Pono remain at the top, and all seven
-  branches, birthdays, Birthday Fund, daily features, 3D clown, song,
-  Firebase config and read-only/public permissions remain unchanged.
+GITHUB PAGES DEPLOYMENT
+1) Extract this ZIP.
+2) Upload / replace index.html, sw.js, manifest.webmanifest, pono-family-icon.png in the SAME repo folder.
+3) Commit: Pono Family Birthday Hub v1.1.17 - Add Daily Lucky Wheel
+4) Open the published site online once on each device, then refresh to update offline caches.
 
-GITHUB PAGES UPDATE
-Upload all four application files to the GitHub Pages repo, replacing the old:
-  index.html, sw.js, manifest.webmanifest, pono-family-icon.png
-Use one online visit to install the new offline cache (v1.1.16).
+NO FIREBASE RULE CHANGES REQUIRED
+The included firestore.rules is an unchanged copy of v1.1.16 for convenience only.
+Do not republish it unless you have another reason to update rules.
+Firebase project, administrator UID, birthday records, Birthday Fund and Family Tree remain unchanged.
 
-FIREBASE
-No changes to the database, existing birthdays, rules, or confirmed
-Firestore family links are made by this package. The included firestore.rules
-is a reference copy with functionally identical rules to v1.1.15 and DOES NOT
-need republishing if that ruleset has already been published.
+LUCKY WHEEL
+- New Lucky Wheel tab and PONO DAILY shortcut.
+- Wheel shows 10 activities selected reproducibly from 36 fun family activities each Asia/Manila day.
+- One randomly selected activity per device/browser per Philippine day; the spin is saved to localStorage
+  before animation, avoiding duplicate spins after reload or offline restart.
+- A result can be shared using the native share sheet or clipboard fallback.
+- LocalStorage is not secure against resetting, incognito, clearing browser data or another device.
+  There is no central per-person limit or activity history sync. No authentication is needed.
+- No money, payments, odds-for-value, purchases, coupons or cash prizes.
+- Works offline after initial online install, as long as the browser retains cached files.
 
-The prominent family layout is based on family-supplied relationships, and it
-is visual only; it does not overwrite separately stored confirmed links. If
-any previously saved confirmed links are incorrect, review and remove them
-as administrator using "Connect family members" in the Family Tree tab.
+PRESERVED FEATURES
+Firebase public birthday read / administrator-only write; Birthday Funds/contribution matrix;
+Family Tree hierarchy and corrected Resty / May Sheryl, Monilly / James relationships;
+PONO DAILY animated gift and trivia; named birthday greeting/song; 3D clown;
+notifications/calendars; neon-yellow Developed by credit; service-worker offline shell.
 
-GITHUB COMMIT MESSAGE
-Pono Family Birthday Hub v1.1.16 - Correct Resty and Monilly Family Tree Branches
+Note: Public view currently exposes stored family full birthdates and names to the internet.
