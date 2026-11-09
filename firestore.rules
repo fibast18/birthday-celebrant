@@ -1,0 +1,65 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Pono Family Birthday Hub v1.1.11.
+    // Exact admin Firebase Authentication UID is preconfigured.
+    // Birthdays are publicly readable; ONLY the administrator can change them.
+    // WARNING: public reads expose full birthdates, even if hidden in the UI.
+    function isAdmin() {
+      return request.auth != null &&
+        request.auth.uid == 'LH2OEWTZUua2Bq6MTrLo14sJPO23';
+    }
+    match /birthdays/{birthdayId} {
+      // Anyone, including people who have not signed in, may read records.
+      allow get, list: if true;
+      // Only your Firebase Auth UID can change birthday records.
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Birthday Fund: one record per celebrant and birthday year.
+    // Everyone may see family contributions. Only the configured administrator
+    // can create, change or clear the recorded amounts.
+    match /birthdayFunds/{fundId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Retained for compatibility with previously approved family accounts.
+    // These records do NOT restrict public birthday viewing.
+    match /familyAccess/{uid} {
+      // Members can check ONLY their own approval; admin can view the full list.
+      allow get: if isAdmin() ||
+        (request.auth != null && request.auth.uid == uid);
+      allow list: if isAdmin();
+      // Only admin can grant viewer access (members cannot self-approve).
+      allow create, update: if isAdmin() &&
+        uid != 'LH2OEWTZUua2Bq6MTrLo14sJPO23' &&
+        request.resource.data.keys().hasOnly(['name', 'email', 'role', 'updatedAt']) &&
+        request.resource.data.role == 'viewer';
+      allow delete: if isAdmin() && uid != 'LH2OEWTZUua2Bq6MTrLo14sJPO23';
+    }
+    // Legacy optional self-service requests; never self-service APPROVAL.
+    // Public viewers do not need requests; retained for backward compatibility.
+    // Only the administrator can list all requests and act on others' requests.
+    match /accessRequests/{uid} {
+      allow get: if isAdmin() ||
+        (request.auth != null && request.auth.uid == uid);
+      allow list: if isAdmin();
+      allow create: if request.auth != null && request.auth.uid == uid &&
+        uid != 'LH2OEWTZUua2Bq6MTrLo14sJPO23' &&
+        request.auth.token.email is string &&
+        request.resource.data.keys().hasOnly(['name', 'email', 'createdAt']) &&
+        request.resource.data.keys().hasAll(['name', 'email', 'createdAt']) &&
+        request.resource.data.name is string &&
+        request.resource.data.name.size() > 0 &&
+        request.resource.data.name.size() <= 100 &&
+        request.resource.data.email == request.auth.token.email &&
+        request.resource.data.email.size() <= 150 &&
+        request.resource.data.createdAt == request.time;
+      allow update: if false;
+      allow delete: if isAdmin() ||
+        (request.auth != null && request.auth.uid == uid);
+    }
+
+  }
+}
