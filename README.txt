@@ -1,45 +1,39 @@
-PONO FAMILY BIRTHDAY HUB v1.1.13 — PONO DAILY
-================================================
+PONO FAMILY BIRTHDAY HUB — v1.1.14 Family Tree
+==============================================
 
-Upload these four files to your existing GitHub Pages repository root:
-  index.html
-  sw.js
-  manifest.webmanifest
-  pono-family-icon.png
+NEW: Public Family Tree tab displays family branches from the existing Firebase
+birthday groups. Tap a person to see birthday and confirmed connections.
+Only the Firebase administrator can add/remove explicit Parent → Child and
+Partner links. Linking does NOT modify birthdays or Birthday Funds.
 
-Keep your GitHub Pages URL unchanged. To update an installed offline Home Screen
-app, visit the website online once and reload after the service worker updates.
-No Firestore Security Rules change is required for this release. firestore.rules
-is included for reference only; birthday and fund records retain their schema.
+DEPLOYMENT (GitHub Pages)
+1. Extract this ZIP.
+2. Upload index.html, sw.js, manifest.webmanifest, pono-family-icon.png
+   to the SAME ROOT folder of your existing birthday-celebrant repository.
+3. In Firebase Console > Firestore Database > Rules, merge or replace your
+   existing rules with firestore.rules included here and click PUBLISH.
+   The only NEW collection permission is familyTree/relationships.
+   If this Firebase project hosts any other applications, MERGE their rules;
+   do NOT discard unrelated permissions.
+4. Reopen GitHub Pages online once to update the offline service worker.
+5. Open FAMILY TREE; click a person to open their profile. Sign in as admin
+   to click "Connect relatives" and enter verified relationships.
 
-NEW:
-* PONO DAILY tab, usable without login on phone or laptop.
-* Deterministic, Asia/Manila daily family surprise with 48 curated prompts.
-* One daily multiple-choice family quiz generated from the existing birthdates.
-* A private, local-only answer/check-in history (not shared/synced across devices).
-* Share buttons for sending the day's prompt and quiz challenge via phone share
-  sheet or copying a message for the family chat.
-* Offline availability after at least one successful online app + birthday sync.
-* Accessible keyboard navigation, mobile-responsive layout, reduced motion.
+PRIVACY
+The full birthday dates are already public under current site policy.
+New confirmed parent-child and partner links will also be publicly readable.
+Do not add connections you do not wish to publish. The tree does not infer
+parentage from matching surnames or household labels.
 
-EXISTING FEATURES PRESERVED:
-* Firebase Firestore project birthday-celebrant-f5804 and admin UID unchanged.
-* Public-read birthdays and fund; only existing admin can edit.
-* Birthday Fund matrix and year-specific contributions (unchanged).
-* Birthday music / personalized spoken-name greeting (user taps play).
-* Existing 3D clown and 2D fallback.
-* PONO logo, birthday countdowns, calendar alerts, imports/exports,
-  search-clear, neon-yellow developer credit, Firebase sync and offline PWA.
+OFFLINE
+Previously synchronized family member info and relations remain available
+read-only when offline on devices that have loaded the app online before.
+Completely new devices still need an initial online visit to install the app.
 
-NOTES:
-* Daily challenges are identical for everyone who has the same date and synced
-  family birthdays, without publishing daily documents to Firestore.
-* Visitor answers and opened-surprise history are stored ONLY locally in that
-  browser. Clearing browser/app storage resets them; other devices don't sync.
-* No personal comments, photos, votes or other public user-generated data are
-  collected in this release.
-* The browser must load the site successfully online once before offline use.
-* A birthday quiz cannot generate without at least four saved family records.
+PRESERVED
+Firebase project birthday-celebrant-f5804; Firebase administrator UID;
+birthday records, Birthday Funds, member contributions matrix, personalized
+Birthday Song, PONO DAILY, 3D clown, PWA/offline, PONO icon, and developer credit.
 
-COMMIT MESSAGE:
-Pono Family Birthday Hub v1.1.13 - Add PONO Daily Surprise and Family Quiz
+GITHUB COMMIT MESSAGE
+Pono Family Birthday Hub v1.1.14 - Interactive Family Tree
