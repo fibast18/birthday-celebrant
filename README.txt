@@ -1,39 +1,41 @@
-PONO FAMILY BIRTHDAY HUB — v1.1.14 Family Tree
-==============================================
+PONO FAMILY BIRTHDAY HUB — v1.1.15 Generations Family Tree
+========================================================
 
-NEW: Public Family Tree tab displays family branches from the existing Firebase
-birthday groups. Tap a person to see birthday and confirmed connections.
-Only the Firebase administrator can add/remove explicit Parent → Child and
-Partner links. Linking does NOT modify birthdays or Birthday Funds.
+WHAT'S NEW
+- Billy Pono (deceased, in loving memory) and Monica Pono appear together at the top.
+- Seven household branches, in the exact requested order: Maridel/Julito,
+  Resty/Narvee, Resty/Shyrel, Monilly/James, Bernardo/Maricar,
+  Bernardo/Analyn, Rico/Mary Ann.
+- Children, known partners and grandchildren are visually grouped beneath
+  their household. Current birthday records are matched by exact name.
+- People not yet in birthday records (e.g., Shyrel if missing) appear as
+  placeholders, NOT newly created Firebase records.
+- Additional relatives not placed in the above seven branches are still listed.
+- Existing administrator-confirmed relationships remain under an expandable
+  saved-connections diagram. New visual arrangement does not automatically
+  write new connections to Firebase.
 
-DEPLOYMENT (GitHub Pages)
-1. Extract this ZIP.
-2. Upload index.html, sw.js, manifest.webmanifest, pono-family-icon.png
-   to the SAME ROOT folder of your existing birthday-celebrant repository.
-3. In Firebase Console > Firestore Database > Rules, merge or replace your
-   existing rules with firestore.rules included here and click PUBLISH.
-   The only NEW collection permission is familyTree/relationships.
-   If this Firebase project hosts any other applications, MERGE their rules;
-   do NOT discard unrelated permissions.
-4. Reopen GitHub Pages online once to update the offline service worker.
-5. Open FAMILY TREE; click a person to open their profile. Sign in as admin
-   to click "Connect relatives" and enter verified relationships.
+GITHUB PAGES
+Upload index.html, sw.js, manifest.webmanifest, pono-family-icon.png
+to the same repository folder, replacing the previous app shell.
+
+FIREBASE SECURITY RULES — IMPORTANT
+Open Firestore Database > Rules and publish the supplied firestore.rules
+(or merge its familyTree rules into your existing project rules if you host
+other apps). Version v1.1.14 Family Tree had two different packages; one
+restricted familyTree/{id} to a single document even though the app
+reads a collection of relationship documents. This v1.1.15 rules file
+correctly permits public read/list and owner-only write for the familyTree
+collection. No database deletion or migration is needed.
 
 PRIVACY
-The full birthday dates are already public under current site policy.
-New confirmed parent-child and partner links will also be publicly readable.
-Do not add connections you do not wish to publish. The tree does not infer
-parentage from matching surnames or household labels.
+The family birthdays and names are already public, and the family tree
+layout and confirmed relationships are also public on GitHub Pages.
 
-OFFLINE
-Previously synchronized family member info and relations remain available
-read-only when offline on devices that have loaded the app online before.
-Completely new devices still need an initial online visit to install the app.
-
-PRESERVED
-Firebase project birthday-celebrant-f5804; Firebase administrator UID;
-birthday records, Birthday Funds, member contributions matrix, personalized
-Birthday Song, PONO DAILY, 3D clown, PWA/offline, PONO icon, and developer credit.
+PRESERVED FEATURES
+Birthday Fund contribution matrix, birthday song, Daily Surprise gift
+opening animation, daily quizzes, 3D clown, search, offline viewing,
+Firebase config/admin UID, original logo and neon-yellow developer credit.
 
 GITHUB COMMIT MESSAGE
-Pono Family Birthday Hub v1.1.14 - Interactive Family Tree
+Pono Family Birthday Hub v1.1.15 - Generations Family Tree and Founders

@@ -1,7 +1,7 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Pono Family Birthday Hub v1.1.14.
+    // Pono Family Birthday Hub v1.1.15.
     // Exact admin Firebase Authentication UID is preconfigured.
     // Birthdays are publicly readable; ONLY the administrator can change them.
     // WARNING: public reads expose full birthdates, even if hidden in the UI.
@@ -24,13 +24,11 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
-
-    // Family Tree: linked parent-child and partner relationships. Public-read
-    // matches the birthday app; only the owner may save or remove links.
-    match /familyTree/{treeId} {
-      allow get: if treeId == 'relationships';
-      allow list: if false;
-      allow create, update, delete: if treeId == 'relationships' && isAdmin();
+    // Public family tree links (names & relationships are public).
+    // Relationship authoring is restricted to the configured administrator.
+    match /familyTree/{relationId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
     }
 
     // Retained for compatibility with previously approved family accounts.
