@@ -1,18 +1,45 @@
-Pono Family Birthday Hub v1.1.12 — Birthday Song & Personalized Greeting
+PONO FAMILY BIRTHDAY HUB v1.1.13 — PONO DAILY
+================================================
 
-CUMULATIVE UPDATE from v1.1.11. Upload these 4 files from the ZIP to your existing GitHub Pages repository root, replacing the previous versions:
+Upload these four files to your existing GitHub Pages repository root:
   index.html
   sw.js
   manifest.webmanifest
   pono-family-icon.png
 
-The matching firestore.rules file is provided for reference; its PERMISSIONS HAVE NOT CHANGED from v1.1.11. You do not need to republish Firestore rules for this version. The existing birthdayFunds, birthdays and legacy optional family collections are unchanged.
+Keep your GitHub Pages URL unchanged. To update an installed offline Home Screen
+app, visit the website online once and reload after the service worker updates.
+No Firestore Security Rules change is required for this release. firestore.rules
+is included for reference only; birthday and fund records retain their schema.
 
-New: When the app detects one or more birthdays today (Asia/Manila date, including previously synced offline records), it shows a prominent Birthday Surprise panel. A visitor taps 'Play Birthday Surprise' to hear an instrumental birthday melody made by the browser with Web Audio and an optional SPOKEN personalized birthday greeting using the browser's built-in text-to-speech. The greeting is not a studio-quality sung-name recording. Multiple celebrants each receive a greeting and tune in turn. Stop and Replay controls are available. The existing 3D clown continues dancing. No paid APIs, song MP3s or remote sound assets are used.
+NEW:
+* PONO DAILY tab, usable without login on phone or laptop.
+* Deterministic, Asia/Manila daily family surprise with 48 curated prompts.
+* One daily multiple-choice family quiz generated from the existing birthdates.
+* A private, local-only answer/check-in history (not shared/synced across devices).
+* Share buttons for sending the day's prompt and quiz challenge via phone share
+  sheet or copying a message for the family chat.
+* Offline availability after at least one successful online app + birthday sync.
+* Accessible keyboard navigation, mobile-responsive layout, reduced motion.
 
-IMPORTANT: Browsers such as Safari/iOS and Chrome typically block automatically playing sound until a user interacts with the webpage. Accordingly the music requires one tap; no audio plays on page load. To support offline sound, first open this GitHub-hosted app ONCE while ONLINE on each device to save the shell and synced birthday data. Offline music uses browser-generated tones. Spoken names depend on the voices available on that device, which can vary offline. If voices are missing or unavailable, music still works.
+EXISTING FEATURES PRESERVED:
+* Firebase Firestore project birthday-celebrant-f5804 and admin UID unchanged.
+* Public-read birthdays and fund; only existing admin can edit.
+* Birthday Fund matrix and year-specific contributions (unchanged).
+* Birthday music / personalized spoken-name greeting (user taps play).
+* Existing 3D clown and 2D fallback.
+* PONO logo, birthday countdowns, calendar alerts, imports/exports,
+  search-clear, neon-yellow developer credit, Firebase sync and offline PWA.
 
-The app remains public-read / administrator-write. The Firebase configuration, admin UID, birthday funds, contribution matrix, existing data schema, service worker offline assets, PONO branding, 3D clown, and neon-yellow footer credit are retained. Contributions are recorded values, not transferred funds.
+NOTES:
+* Daily challenges are identical for everyone who has the same date and synced
+  family birthdays, without publishing daily documents to Firestore.
+* Visitor answers and opened-surprise history are stored ONLY locally in that
+  browser. Clearing browser/app storage resets them; other devices don't sync.
+* No personal comments, photos, votes or other public user-generated data are
+  collected in this release.
+* The browser must load the site successfully online once before offline use.
+* A birthday quiz cannot generate without at least four saved family records.
 
-GitHub commit message:
-Pono Family Birthday Hub v1.1.12 - Personalized Birthday Music and Greeting
+COMMIT MESSAGE:
+Pono Family Birthday Hub v1.1.13 - Add PONO Daily Surprise and Family Quiz
