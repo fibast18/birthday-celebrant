@@ -1,7 +1,7 @@
-/* PONO Family Birthday Hub v1.1.11 – offline-first shell and read-only cached birthdays.
+/* PONO Family Birthday Hub v1.1.12 – offline-first shell and read-only cached birthdays.
    Hosted on HTTPS GitHub Pages. First installation requires internet.
    Firebase API requests, user account information and Firestore responses are NEVER cached here. */
-const VERSION='v1.1.11';
+const VERSION='v1.1.12';
 const CACHE_NAME='pono-birthday-shell-'+VERSION;
 const APP_URL=new URL('./index.html',self.registration.scope).href;
 const SHELL=['./index.html','./manifest.webmanifest','./pono-family-icon.png'];
