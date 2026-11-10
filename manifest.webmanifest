@@ -1,7 +1,7 @@
 {
   "name": "Pono Family Birthday Hub",
   "short_name": "PONO Birthdays",
-  "description": "Pono family birthdays, daily surprises, animated gift, family quiz, Lucky Wheel, and multigeneration Family Tree, and Ask Pono family data assistant",
+  "description": "Pono family birthdays, funds, family tree, daily quiz and Lucky Wheel, plus Ask Pono with conversational follow-up questions and detailed family-data answers",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
