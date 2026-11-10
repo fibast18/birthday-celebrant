@@ -1,32 +1,48 @@
-PONO FAMILY BIRTHDAY HUB — v1.1.18 · FAMILY TREE CORRECTIONS
+PONO FAMILY BIRTHDAY HUB — v1.1.19 · ASK PONO
 
-CHANGELOG
-- Corrected the Bernardo & Maricar branch: siblings Irish Ann Pono and Jhon Kyle Pono.
-- Irish Ann Pono and Clint Silvano are partners with their child Thyme Silvano under them.
-- Removed duplicate/missing Family Tree placeholder cards labeled "John Kyle Pono" and "Thyme".
-- Safely matches older birthday record spellings ("John Kyle Pono" / "Thyme") to
-  the corrected tree names, displaying actual birthday dates without adding new records.
-- If an existing parent link uses the old name, the tree now deduplicates by identity.
-- Birthday records in Firestore were not renamed or deleted. Change original data
-  spelling later using administrator Edit if needed.
+NEW IN THIS CUMULATIVE UPDATE
+- Floating "✦ Ask Pono" at the bottom right of phone and laptop screens.
+- Mobile-friendly chat panel, question box, instant responses, sample questions,
+  and accessible close/Escape controls.
+- Built-in, read-only family-data question answering using the SAME records already
+  loaded by the app (or its saved offline copies). No paid AI subscription,
+  API key, extra Firestore reads, or new Firestore collection required.
+- Questions supported include upcoming birthdays, current ages, full birthdates,
+  countdowns, who celebrates this month, family totals and groups, Family Tree
+  relationships in the displayed branches, birthday fund totals and donors,
+  PONO DAILY surprises and quizzes, and the local Lucky Wheel outcome.
+- Responses are grounded in available app data and make no Firebase changes.
+- Questions and chat messages are held in memory only during the open app session.
 
-GITHUB PAGES DEPLOYMENT
-1) Extract the ZIP and upload these four files to your current GitHub repository:
+IMPORTANT AI LIMITATION
+Ask Pono is a locally coded natural-language family data assistant, not a full
+ChatGPT-style large language model. It may not understand every wording or answer
+questions requiring facts outside the app. It responds with a helpful limitation
+rather than inventing data. To support genuinely unrestricted generative answers,
+a separate AI model/service would be needed.
+
+DEPLOY TO GITHUB PAGES
+1) Extract the ZIP.
+2) Upload these FOUR files to the root of your existing Github repository:
    index.html, sw.js, manifest.webmanifest, pono-family-icon.png.
-2) Replace the existing files and commit directly to the main branch.
-3) Commit message: Pono Family Birthday Hub v1.1.18 - Correct Bernardo and Maricar Family Tree
-4) Load the published app online and refresh so the service worker updates.
+3) Replace previous versions and commit directly to main.
+4) Suggested commit message:
+   Pono Family Birthday Hub v1.1.19 - Add Floating Ask Pono Family Data Assistant
+5) Open the published app online once to update the cached offline PWA.
+6) Tap the Ask Pono floating button and try "Whose birthday is next?".
 
 FIREBASE
-- No Firestore rules changes, migrations, or database edits needed.
-- Keep existing public-view/admin-write permissions.
-- The included firestore.rules is for reference, not mandatory to republish.
+- No Security Rules change or database migration needed for Ask Pono.
+- Existing Firebase config and administrator UID are already in index.html.
+- Existing public-read/administrator-write restrictions continue unchanged.
+- Questions do not modify records or call a third-party AI endpoint.
 
-ALL OTHER FEATURES PRESERVED
-Birthday records, funds and donor matrix, family tree relationships,
-PONO DAILY, daily Lucky Wheel, birthday greeting/song, 3D clown,
-logo and icon, offline PWA, Firebase config and administrator UID,
-capitalized neon-yellow footer credit.
+EVERYTHING ELSE REMAINS
+All v1.1.18 family-tree corrections, birthdays, Birthday Fund and contribution
+matrix, Daily Lucky Wheel, PONO DAILY, birthday music and voice, dancing 3D
+clown, family logo, offline PWA, and neon-yellow footer developer credit.
 
-NOTE: Full names, dates of birth, family tree and donations remain publicly visible
-because the app's public-view setting has not been changed.
+PUBLIC DATA NOTICE
+The website's current public-view policy exposes full names, dates of birth,
+family relationships and birthday fund contributions. Ask Pono reflects that
+existing policy; it does not make previously private data public.
