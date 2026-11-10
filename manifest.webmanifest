@@ -1,7 +1,7 @@
 {
   "name": "Pono Family Birthday Hub",
   "short_name": "PONO Birthdays",
-  "description": "PONO family birthdays, funds, tree, fun activities, and Gemini Ask Pono with no app-imposed daily question cap and offline fallback",
+  "description": "PONO family birthdays, funds, tree, fun activities, and Gemini Ask Pono with Gemini as the default online assistant, automatic offline/quota fallback, and no app-imposed daily question limit",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
