@@ -1,39 +1,20 @@
-PONO FAMILY BIRTHDAY HUB v1.1.21 — ASK PONO DEEP FOLLOW-UP UPDATE
+PONO FAMILY BIRTHDAY HUB v1.1.22 — ASK PONO CONTEXTUAL RELATIONSHIP FOLLOW-UPS
 
-GITHUB PAGES INSTALLATION
-1. Extract this ZIP and replace the four website files in your existing GitHub repository:
-   index.html, sw.js, manifest.webmanifest, pono-family-icon.png.
-2. Commit to main. Load the app online once to update its offline service worker.
-3. Open Ask Pono and try:
-   “Who are Rico Pono's children?”
-   “How old are their children?”
-   “When are their birthdays?”
-   “Who is the oldest among them?”
-   “Compare Rianne and Adrian's ages.”
-   “Tell me everything about Christopher Mastin.”
+DEPLOYMENT TO GITHUB PAGES
+1. Extract the ZIP. Upload and replace index.html, sw.js, manifest.webmanifest, and pono-family-icon.png at the root of your existing GitHub Pages repository.
+2. Commit to main. Open your website online once, then refresh to update the offline cache.
+3. No Firebase changes, data migrations, or security-rule changes are required; firestore.rules is included only as a reference copy.
 
-WHAT CHANGED
-- Improved multi-turn context retention for groups of relatives, not just one name.
-- Answers combined age, birthdate, next-birthday and fund questions for related members.
-- Adds comparisons, comprehensive family profiles, years, relationship chaining.
-- Answers use live Firebase public data, with last-saved offline fallback.
-- No API subscription, external chatbot service, or Firestore writes.
+FIXED IN v1.1.22
+- Ask Pono now understands consecutive relationship comparisons without requiring the word “related” in every follow-up.
+- Examples after “How are Adrian and Resty related?” include “How about Mary Ann and Narvee?”, “How about Rico and Narvee?”, “How about Resty and Narvee?”, and “How about Rico and Mary Ann?”.
+- Relationship reasoning recognizes partners, siblings of partners, spouses/partners of siblings, and connections between two relatives whose partners are siblings.
+- In-law explanations describe what the displayed Family Tree shows without making unverified assertions about legally recognized marriages or biological relationships.
+- Follow-up questions about ages, birthdays, and Birthday Funds continue using their existing handlers and must not be mistaken for relationship questions.
+- Questions use live or cached family data and remain local/read-only; no external AI endpoint or API key. This is not a retrained or generative language model.
 
-LIMITS
-This is a rule-based local family-data reasoning engine, not a re-trained generative large language model. It can answer many detailed structured questions, but not literally every natural-language expression; it will not invent unrecorded information. Date and fund data may be stale while offline.
+UNCHANGED
+- PONO Firebase project configuration, administrator UID, public-view/admin-only editing, all birthday data and funds, previously corrected Family Tree, 3D clown, birthday song, PONO DAILY, Lucky Wheel, offline PWA, logo, and neon-yellow “Developed by: Engr. Rico J. Pono” credit.
 
-DATA AND SECURITY
-No change to Firestore collections, rules, Firebase config or administrator UID.
-The existing birthday, family tree and Birthday Fund records remain unchanged.
-Public viewers continue to have read-only access; only the configured administrator may edit.
-
-GITHUB COMMIT
-Pono Family Birthday Hub v1.1.21 - Improve Ask Pono Deep Questions and Context
-
-
-v1.1.21 Ask Pono Family Relationship Intelligence:
-- Explains two-person relationships (Adrian and Resty: uncle/nephew) from the displayed family generations and confirmed links.
-- Supports siblings, parents, grandparents, first/second cousins, cousin removals and some partnership connections.
-- Family root ancestry is inferred from the requested displayed founder-and-household layout; it is not automatically written to Firestore as independently confirmed fact.
-- Remains an offline rule-based data assistant, not a newly trained generative model.
-- No Firestore rules changes, collections or migrations.
+GITHUB COMMIT MESSAGE
+Pono Family Birthday Hub v1.1.22 - Fix Ask Pono Relationship Follow-Ups and In-Laws
