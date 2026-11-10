@@ -1,4 +1,4 @@
-PONO FAMILY BIRTHDAY HUB v1.1.20 — ASK PONO DEEP FOLLOW-UP UPDATE
+PONO FAMILY BIRTHDAY HUB v1.1.21 — ASK PONO DEEP FOLLOW-UP UPDATE
 
 GITHUB PAGES INSTALLATION
 1. Extract this ZIP and replace the four website files in your existing GitHub repository:
@@ -28,4 +28,12 @@ The existing birthday, family tree and Birthday Fund records remain unchanged.
 Public viewers continue to have read-only access; only the configured administrator may edit.
 
 GITHUB COMMIT
-Pono Family Birthday Hub v1.1.20 - Improve Ask Pono Deep Questions and Context
+Pono Family Birthday Hub v1.1.21 - Improve Ask Pono Deep Questions and Context
+
+
+v1.1.21 Ask Pono Family Relationship Intelligence:
+- Explains two-person relationships (Adrian and Resty: uncle/nephew) from the displayed family generations and confirmed links.
+- Supports siblings, parents, grandparents, first/second cousins, cousin removals and some partnership connections.
+- Family root ancestry is inferred from the requested displayed founder-and-household layout; it is not automatically written to Firestore as independently confirmed fact.
+- Remains an offline rule-based data assistant, not a newly trained generative model.
+- No Firestore rules changes, collections or migrations.
