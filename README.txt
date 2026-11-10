@@ -1,31 +1,32 @@
-PONO FAMILY BIRTHDAY HUB — v1.1.17 · DAILY LUCKY WHEEL
+PONO FAMILY BIRTHDAY HUB — v1.1.18 · FAMILY TREE CORRECTIONS
+
+CHANGELOG
+- Corrected the Bernardo & Maricar branch: siblings Irish Ann Pono and Jhon Kyle Pono.
+- Irish Ann Pono and Clint Silvano are partners with their child Thyme Silvano under them.
+- Removed duplicate/missing Family Tree placeholder cards labeled "John Kyle Pono" and "Thyme".
+- Safely matches older birthday record spellings ("John Kyle Pono" / "Thyme") to
+  the corrected tree names, displaying actual birthday dates without adding new records.
+- If an existing parent link uses the old name, the tree now deduplicates by identity.
+- Birthday records in Firestore were not renamed or deleted. Change original data
+  spelling later using administrator Edit if needed.
 
 GITHUB PAGES DEPLOYMENT
-1) Extract this ZIP.
-2) Upload / replace index.html, sw.js, manifest.webmanifest, pono-family-icon.png in the SAME repo folder.
-3) Commit: Pono Family Birthday Hub v1.1.17 - Add Daily Lucky Wheel
-4) Open the published site online once on each device, then refresh to update offline caches.
+1) Extract the ZIP and upload these four files to your current GitHub repository:
+   index.html, sw.js, manifest.webmanifest, pono-family-icon.png.
+2) Replace the existing files and commit directly to the main branch.
+3) Commit message: Pono Family Birthday Hub v1.1.18 - Correct Bernardo and Maricar Family Tree
+4) Load the published app online and refresh so the service worker updates.
 
-NO FIREBASE RULE CHANGES REQUIRED
-The included firestore.rules is an unchanged copy of v1.1.16 for convenience only.
-Do not republish it unless you have another reason to update rules.
-Firebase project, administrator UID, birthday records, Birthday Fund and Family Tree remain unchanged.
+FIREBASE
+- No Firestore rules changes, migrations, or database edits needed.
+- Keep existing public-view/admin-write permissions.
+- The included firestore.rules is for reference, not mandatory to republish.
 
-LUCKY WHEEL
-- New Lucky Wheel tab and PONO DAILY shortcut.
-- Wheel shows 10 activities selected reproducibly from 36 fun family activities each Asia/Manila day.
-- One randomly selected activity per device/browser per Philippine day; the spin is saved to localStorage
-  before animation, avoiding duplicate spins after reload or offline restart.
-- A result can be shared using the native share sheet or clipboard fallback.
-- LocalStorage is not secure against resetting, incognito, clearing browser data or another device.
-  There is no central per-person limit or activity history sync. No authentication is needed.
-- No money, payments, odds-for-value, purchases, coupons or cash prizes.
-- Works offline after initial online install, as long as the browser retains cached files.
+ALL OTHER FEATURES PRESERVED
+Birthday records, funds and donor matrix, family tree relationships,
+PONO DAILY, daily Lucky Wheel, birthday greeting/song, 3D clown,
+logo and icon, offline PWA, Firebase config and administrator UID,
+capitalized neon-yellow footer credit.
 
-PRESERVED FEATURES
-Firebase public birthday read / administrator-only write; Birthday Funds/contribution matrix;
-Family Tree hierarchy and corrected Resty / May Sheryl, Monilly / James relationships;
-PONO DAILY animated gift and trivia; named birthday greeting/song; 3D clown;
-notifications/calendars; neon-yellow Developed by credit; service-worker offline shell.
-
-Note: Public view currently exposes stored family full birthdates and names to the internet.
+NOTE: Full names, dates of birth, family tree and donations remain publicly visible
+because the app's public-view setting has not been changed.
