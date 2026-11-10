@@ -1,7 +1,7 @@
 {
   "name": "Pono Family Birthday Hub",
   "short_name": "PONO Birthdays",
-  "description": "Pono family birthdays, funds, family tree, daily quiz and Lucky Wheel, plus Ask Pono with contextual follow-ups and in-law relationship answers",
+  "description": "PONO family birthdays, funds, tree, fun activities, and optional Gemini-powered Ask Pono AI with free offline fallback",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

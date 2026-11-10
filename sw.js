@@ -1,7 +1,7 @@
-/* PONO Family Birthday Hub v1.1.22 – offline-first shell and read-only cached birthdays.
+/* PONO Family Birthday Hub v1.1.24 – offline-first shell and read-only cached birthdays.
    Hosted on HTTPS GitHub Pages. First installation requires internet.
    Firebase API requests, user account information and Firestore responses are NEVER cached here. */
-const VERSION='v1.1.22';
+const VERSION='v1.1.24';
 const CACHE_NAME='pono-birthday-shell-'+VERSION;
 const APP_URL=new URL('./index.html',self.registration.scope).href;
 const SHELL=['./index.html','./manifest.webmanifest','./pono-family-icon.png'];
@@ -9,6 +9,8 @@ const MODULES=[
   'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js',
   'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js',
   'https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js',
+  'https://www.gstatic.com/firebasejs/13.1.0/firebase-app-check.js',
+  'https://www.gstatic.com/firebasejs/13.1.0/firebase-ai.js',
   'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js'
 ];
 const permittedModuleURL=(url)=>{
