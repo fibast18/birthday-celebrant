@@ -1,46 +1,50 @@
-PONO FAMILY BIRTHDAY HUB v1.1.26 — GEMINI BY DEFAULT, AUTOMATIC LOCAL FALLBACK
+PONO FAMILY BIRTHDAY HUB v1.1.27 — ASK PONO UNIVERSAL AI
 
-CUMULATIVE RELEASE based on v1.1.25. Preserves all existing family data,
-birthdays, Birthday Funds, Family Tree, PONO DAILY, Lucky Wheel, 3D clown,
-birthday music, offline support, Firebase public-view/admin-only write permissions,
-PONO branding, and neon-yellow developer footer.
+CUMULATIVE RELEASE based directly on v1.1.26. All previous features,
+Firestore data, permissions, 3D clown, songs, birthday funds, family tree,
+PONO DAILY, Lucky Wheel, offline support, logo and neon-yellow developer
+footer are retained.
 
-CHANGES
-- Gemini is the default Ask Pono answer engine for ONLINE chats once the user
-  has granted the existing privacy/data-sharing consent.
-- Prior consent is remembered on the same browser, so Gemini is selected
-  automatically at every fresh launch (no manual selection required).
-- First-time users see a one-time-per-session consent prompt before any data
-  reaches Google; choosing "Use local instead" remains available.
-- Explicit Local toggle stays available for privacy. A new app launch once
-  again prefers Gemini by default (with prior consent).
-- If offline, Gemini is inaccessible, or Google returns quota/rate-limit errors,
-  Ask Pono automatically answers using the local family-data engine.
-- Real Google 429/quota responses trigger temporary exponential retry backoff,
-  starting at 60 seconds, capped at 30 minutes. Automatically retries later.
-  This is NOT a per-day app question limit. Google free-tier quota still applies.
-- Version bumped in HTML and service worker cache.
+WHAT CHANGED
+- Gemini 3.5 Flash-Lite now handles general knowledge, science, technology,
+  explanations, math, writing, translations, and broad everyday questions,
+  in addition to the PONO family data.
+- Family-related requests include relevant app data and prior family context;
+  unrelated general requests do NOT attach the family database or earlier
+  family conversations to Google.
+- Conversational context now includes relevant preceding user AND assistant
+  messages, separated by topic for privacy and accuracy.
+- Longer, more natural responses (up to 1,800 generated tokens).
+- General-topic suggestion chips and welcoming chat prompt.
+- IMPORTANT: No live web browsing, news-feed, Google Search grounding,
+  real-time weather, or news verification in this free version. Ask Pono will
+  disclose this rather than invent current headlines.
+- Gemini remains the default after user consent; no app-imposed daily cap.
+- If offline, Gemini fails, or free quotas are reached: Local assistant handles
+  saved PONO family questions, but makes NO promise to answer general questions.
 
-PRIVACY
-Firebase Gemini generative AI receives selected public family information
-only after the user's consent. It is never used for database writes; birth
-records remain public-read/admin-write via existing Firestore rules.
-The reCAPTCHA Enterprise website site key is public configuration, NOT a
-private AI Studio Gemini API key.
+PRIVACY AND COST
+- Firebase AI Logic Gemini Developer API with existing Spark project;
+  no Blaze subscription or paid search grounding enabled.
+- Existing public App Check key and Firebase web config are retained.
+- Google free-tier limits and service terms still apply. Free-tier submissions
+  may be used by Google to improve its products. Explicit consent is retained.
+- The local-only mode remains available. AI cannot write to Firebase.
 
-DEPLOY
-1. Extract the ZIP.
-2. Replace index.html, sw.js, manifest.webmanifest and pono-family-icon.png
-   in the existing birthday-celebrant GitHub Pages repository.
-3. Commit the files to main, then visit the website online to refresh the PWA.
-4. Open Ask Pono. With existing consent, Gemini should be selected by default.
-5. Ask a family question. Switch to Local only if desired.
-No Firebase Security Rules changes are needed.
+DEPLOYMENT
+1. Extract ZIP and upload index.html, sw.js, manifest.webmanifest and
+   pono-family-icon.png to your birthday-celebrant GitHub Pages repository.
+2. Replace previous four files and commit to main.
+3. Reopen your website ONLINE once for service-worker cache update.
+4. Open Ask Pono and ask "Explain black holes in simple terms" and
+   "How are Adrian and Resty related?" to test both paths.
+5. For live news questions, verify results using an external news source.
+
+No Firebase rule changes, data migrations or reCAPTCHA changes are necessary.
 
 COMMIT MESSAGE
-Pono Family Birthday Hub v1.1.26 - Default Gemini Answers with Automatic Local Fallback
+Pono Family Birthday Hub v1.1.27 - Ask Pono Universal AI General Knowledge
 
-TEST NOTES
-JavaScript syntax, Firebase SDK import checks, package integrity and code-path
-checks performed locally. Live Firebase/Gemini connectivity must be verified
-on the published HTTPS website.
+TESTS
+JavaScript/static checks and simulated chatbot routing and fallbacks locally.
+Live production Gemini calls cannot be performed inside this environment.
