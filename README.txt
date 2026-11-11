@@ -1,50 +1,31 @@
-PONO FAMILY BIRTHDAY HUB v1.1.27 — ASK PONO UNIVERSAL AI
+PONO FAMILY BIRTHDAY HUB v1.1.28 — VERIFIED FAMILY DATA + UNIVERSAL GEMINI AI
 
-CUMULATIVE RELEASE based directly on v1.1.26. All previous features,
-Firestore data, permissions, 3D clown, songs, birthday funds, family tree,
-PONO DAILY, Lucky Wheel, offline support, logo and neon-yellow developer
-footer are retained.
+What's fixed
+- Ask Pono reads the actual family birthday records loaded from Firestore or offline snapshots.
+- It calculates exact age differences in DAYS locally using full stored birthdates and leap years.
+- Short follow-ups such as “In days?” inherit the previous family calculation.
+- Gemini receives verified calculations, and cannot override them with approximate years or falsely say the dates are missing.
+- It can also calculate an individual member's age in days.
+- Full DOBs are not automatically sent to the external AI for calculations. Only explicit DOB questions send the requested named person's date, after the existing AI consent.
+- General science/history/writing/translation chat still uses Gemini by default (with consent), and family queries use existing Firestore data. No live web-search, real-time current news tool, or Google Search grounding is enabled.
+- Birthdays, funds, family tree, song, Lucky Wheel, PONO Daily, 3D clown, original PONO logo, developer footer, offline support and public-view/admin-edit access remain unchanged.
 
-WHAT CHANGED
-- Gemini 3.5 Flash-Lite now handles general knowledge, science, technology,
-  explanations, math, writing, translations, and broad everyday questions,
-  in addition to the PONO family data.
-- Family-related requests include relevant app data and prior family context;
-  unrelated general requests do NOT attach the family database or earlier
-  family conversations to Google.
-- Conversational context now includes relevant preceding user AND assistant
-  messages, separated by topic for privacy and accuracy.
-- Longer, more natural responses (up to 1,800 generated tokens).
-- General-topic suggestion chips and welcoming chat prompt.
-- IMPORTANT: No live web browsing, news-feed, Google Search grounding,
-  real-time weather, or news verification in this free version. Ask Pono will
-  disclose this rather than invent current headlines.
-- Gemini remains the default after user consent; no app-imposed daily cap.
-- If offline, Gemini fails, or free quotas are reached: Local assistant handles
-  saved PONO family questions, but makes NO promise to answer general questions.
+Test question
+  How many days is the age difference between Adrian and Monica?
+  Expected: 26,222 days (February 17, 2023 minus May 4, 1951).
+  Then: In days?
+  Expected: same exact 26,222 days.
 
-PRIVACY AND COST
-- Firebase AI Logic Gemini Developer API with existing Spark project;
-  no Blaze subscription or paid search grounding enabled.
-- Existing public App Check key and Firebase web config are retained.
-- Google free-tier limits and service terms still apply. Free-tier submissions
-  may be used by Google to improve its products. Explicit consent is retained.
-- The local-only mode remains available. AI cannot write to Firebase.
+Deploy
+1. Extract ZIP and upload index.html, sw.js, manifest.webmanifest and pono-family-icon.png to the root of your existing birthday-celebrant GitHub repository.
+2. Commit to main. Open the live Pages app online to refresh its offline cache.
+3. Keep Firebase App Check and existing Firestore rules unchanged; no database migrations.
+4. Ask Pono with Gemini enabled and use the above test questions.
 
-DEPLOYMENT
-1. Extract ZIP and upload index.html, sw.js, manifest.webmanifest and
-   pono-family-icon.png to your birthday-celebrant GitHub Pages repository.
-2. Replace previous four files and commit to main.
-3. Reopen your website ONLINE once for service-worker cache update.
-4. Open Ask Pono and ask "Explain black holes in simple terms" and
-   "How are Adrian and Resty related?" to test both paths.
-5. For live news questions, verify results using an external news source.
+Note
+- A first ever offline install on a device is impossible; it must be opened online once to cache the app.
+- Family records are PUBLIC for reading, admin-only for writing, as in previous releases.
+- Google Gemini free-tier request/rate limits still apply; local read-only fallback remains.
+- External AI can use general learned knowledge, but does not have live browser access or verified breaking-news feeds.
 
-No Firebase rule changes, data migrations or reCAPTCHA changes are necessary.
-
-COMMIT MESSAGE
-Pono Family Birthday Hub v1.1.27 - Ask Pono Universal AI General Knowledge
-
-TESTS
-JavaScript/static checks and simulated chatbot routing and fallbacks locally.
-Live production Gemini calls cannot be performed inside this environment.
+Suggested commit: Pono Family Birthday Hub v1.1.28 - Fix Exact Family Date Calculations and Gemini Context

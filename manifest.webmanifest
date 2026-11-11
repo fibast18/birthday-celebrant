@@ -1,7 +1,7 @@
 {
   "name": "Pono Family Birthday Hub",
   "short_name": "PONO Birthdays",
-  "description": "PONO family birthdays, tree, funds, and daily fun; Ask Pono Universal AI answers general and family questions with free-tier Gemini online and local family-data fallback offline.",
+  "description": "PONO family birthdays, tree, funds, daily fun and Ask Pono Universal AI with exact on-device family date calculations, Gemini explanations and offline fallback.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
