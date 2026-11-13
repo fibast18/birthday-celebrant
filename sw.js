@@ -1,10 +1,10 @@
-/* PONO Family Birthday Hub v1.1.29 – offline-first shell and read-only cached birthdays.
+/* PONO Family Birthday Hub v1.1.31 – offline-first shell and read-only cached birthdays.
    Hosted on HTTPS GitHub Pages. First installation requires internet.
    Firebase API requests, user account information and Firestore responses are NEVER cached here. */
-const VERSION='v1.1.29-private';
+const VERSION='v1.1.31-bag';
 const CACHE_NAME='pono-birthday-shell-'+VERSION;
 const APP_URL=new URL('./index.html',self.registration.scope).href;
-const SHELL=['./index.html','./manifest.webmanifest','./pono-family-icon.png'];
+const SHELL=['./index.html','./manifest.webmanifest','./pono-family-icon.png','./bag.webp'];
 const MODULES=[
   'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js',
   'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js',
@@ -68,7 +68,7 @@ self.addEventListener('fetch',event=>{
  const local=url.origin===self.location.origin&&url.pathname.startsWith(new URL(self.registration.scope).pathname);
  const isDocument=req.mode==='navigate';
  const isModule=permittedModuleURL(req.url);
- const isStatic=local&&(url.pathname.endsWith('/index.html')||url.pathname.endsWith('/manifest.webmanifest')||url.pathname.endsWith('/pono-family-icon.png'));
+ const isStatic=local&&(url.pathname.endsWith('/index.html')||url.pathname.endsWith('/manifest.webmanifest')||url.pathname.endsWith('/pono-family-icon.png')||url.pathname.endsWith('/bag.webp'));
  if(!isDocument&&!isModule&&!isStatic)return; // NEVER cache Firebase APIs or auth network responses.
  if(!local&&!isModule)return;
  event.respondWith((async()=>{

@@ -1,31 +1,85 @@
-PONO FAMILY BIRTHDAY HUB v1.1.28 — VERIFIED FAMILY DATA + UNIVERSAL GEMINI AI
+PONO FAMILY BIRTHDAY HUB — v1.1.31
+AUTO-HIDE HANDBAG + CENTER BUTTON + MIXED WHEEL OPTIONS
+=====================================================
 
-What's fixed
-- Ask Pono reads the actual family birthday records loaded from Firestore or offline snapshots.
-- It calculates exact age differences in DAYS locally using full stored birthdates and leap years.
-- Short follow-ups such as “In days?” inherit the previous family calculation.
-- Gemini receives verified calculations, and cannot override them with approximate years or falsely say the dates are missing.
-- It can also calculate an individual member's age in days.
-- Full DOBs are not automatically sent to the external AI for calculations. Only explicit DOB questions send the requested named person's date, after the existing AI consent.
-- General science/history/writing/translation chat still uses Gemini by default (with consent), and family queries use existing Firestore data. No live web-search, real-time current news tool, or Google Search grounding is enabled.
-- Birthdays, funds, family tree, song, Lucky Wheel, PONO Daily, 3D clown, original PONO logo, developer footer, offline support and public-view/admin-edit access remain unchanged.
+WHAT IS NEW
+* Tapping the PONO center button triggers exactly the same spin as the large SPIN button; keyboard Enter and Space also work.
+* Five cash prizes and five fun surprises are interleaved around the wheel instead of grouped in two halves.
+* The bag's 11th wedge AND handbag teaser disappear for everyone when the Worker confirms the handbag has been awarded on eligible global spin #25.
+* The wheel then automatically redraws as 10 options, using a public status endpoint returning only `bagAvailable` (never your confidential budget, spin progress, cash amount, or winning code).
+* The bag remains visible in the WINNER'S saved result panel and screenshot even after its wedge disappears.
+* Other open devices refresh the bag state when returning to the page and periodically while viewing the wheel (internet needed).
+* Your original orange-red handbag photo is added to the Lucky Wheel as an ELEVENTH prize option.
+* Only the 25TH eligible, ONLINE, FAMILY-WIDE spin starting November 14, 2026 (Asia/Manila) wins the bag.
+* If fewer than 25 total family spins happen November 14, the counter continues the following days until spin #25. The bag has no December 31 expiry if it still hasn't been won.
+* One winner only: Cloudflare D1 issues each spin a unique global sequence number and identifies sequence #25.
+* The winner gets a 6-digit code with the bag picture to screenshot and send to the family GC.
+* The bag is separate from the previously planned PHP 1,000 cash prize budget. Neither pool total, remaining balance, nor daily allocations are shown to visitors.
+* Administrator-only wheel panel now also shows progress toward the 25th spin (or the winning date/code).
+* The existing public birthday viewing, administrator-only editing, Firebase/Gemini Ask Pono, Birthday Fund, family tree, PONO DAILY, 3D clown, songs, and offline app remain in place.
 
-Test question
-  How many days is the age difference between Adrian and Monica?
-  Expected: 26,222 days (February 17, 2023 minus May 4, 1951).
-  Then: In days?
-  Expected: same exact 26,222 days.
+VERY IMPORTANT — GLOBAL SPIN COUNT
+* The bag count begins only on November 14, 2026, Philippine time.
+* ONLY online spins using this updated website AND updated Cloudflare Worker count. An old cached version cannot claim the bag.
+* The count is shared across phones and laptops; it is NOT per user and NOT one person's 25th spin.
+* One spin per browser each Philippine day remains (different devices are allowed).
+* An offline fun spin does NOT count toward the 25 online spins. Prize awards require the Worker to respond.
+* If a request is interrupted, the same browser retries its original request ID. This helps ensure the 25th result isn't lost or counted twice.
+* The screenshot code isn't legal proof of ownership; family members still send their winning screenshot in the family group chat for manual prize delivery.
 
-Deploy
-1. Extract ZIP and upload index.html, sw.js, manifest.webmanifest and pono-family-icon.png to the root of your existing birthday-celebrant GitHub repository.
-2. Commit to main. Open the live Pages app online to refresh its offline cache.
-3. Keep Firebase App Check and existing Firestore rules unchanged; no database migrations.
-4. Ask Pono with Gemini enabled and use the above test questions.
+IMPORTANT DEPLOYMENT SEPARATION
+1. GITHUB WEBSITE ZIP — Contains 5 files for your PUBLIC GitHub Pages birthday-celebrant repository:
+    index.html, sw.js, manifest.webmanifest, pono-family-icon.png, bag.webp
+   Upload all five together to the ROOT of your GitHub Pages repository.
+2. CLOUDFLARE WORKER ZIP — PRIVATE deployment folder, not for public GitHub:
+    worker.mjs, schema.sql, migration.sql, wrangler.toml, package.json, PRIVATE-SETUP.txt
+   This performs the shared 25th-spin selection and protects cash-budget details.
 
-Note
-- A first ever offline install on a device is impossible; it must be opened online once to cache the app.
-- Family records are PUBLIC for reading, admin-only for writing, as in previous releases.
-- Google Gemini free-tier request/rate limits still apply; local read-only fallback remains.
-- External AI can use general learned knowledge, but does not have live browser access or verified breaking-news feeds.
+CLOUDFLARE SETUP — IF YOU NEVER DEPLOYED THE PREVIOUS PRIVATE-BUDGET WORKER
+A. Open the private Worker folder in Mac Terminal.
+B. npm install
+C. npx wrangler login
+D. npx wrangler d1 create pono-family-wheel-2026
+E. Open wrangler.toml and paste the returned database_id in place of REPLACE_WITH_ID_RETURNED_BY_WRANGLER_D1_CREATE
+F. npm run db:apply            (initializes all cash/bag tables and seeded cash allocations ONCE)
+G. npm run deploy              (outputs an HTTPS URL ending in .workers.dev)
+H. Open the public index.html and replace PASTE_YOUR_CLOUDFLARE_WORKER_HTTPS_URL with that exact HTTPS URL.
+I. Upload the FIVE website files to GitHub Pages. Test the /api/health route first.
 
-Suggested commit: Pono Family Birthday Hub v1.1.28 - Fix Exact Family Date Calculations and Gemini Context
+CLOUDFLARE SETUP — IF YOU ALREADY DEPLOYED THE OLDER v1.1.29 PRIVATE-BUDGET WORKER
+A. Download or extract the new private Worker ZIP.
+B. Preserve the SAME existing D1 database ID in wrangler.toml. DO NOT create a new D1 database.
+C. npm install
+D. npx wrangler login
+E. If upgrading from v1.1.29 (before v1.1.30), run `npm run db:migrate` ONCE.
+   If upgrading from an already working v1.1.30 backend, DO NOT run any SQL migration.
+F. npm run deploy             (upgrades the Worker without resetting old budget/spin history)
+G. Keep the existing real Worker URL in your public index.html, then upload all FIVE files to GitHub Pages.
+DO NOT run schema.sql again if you want to preserve an older deployment. Do not run migration.sql on a freshly initialized v1.1.31 database.
+
+TEST BEFORE THE GAME STARTS
+* Open the website once ONLINE and confirm the header/footer show v1.1.31.
+* Open Lucky Wheel; confirm the 11th 'PONO Bag' option and original bag photo appear.
+* Sign in as the administrator and confirm that the cash budget and bag progress are private.
+* Open the same website in a non-signed-in browser: no cash total or remaining budget should be visible.
+* Cash pool remains exactly the same as previous private-budget v1.1.29. No Firestore rules change required.
+* The special bag is awarded at spin 25 on or after November 14, not before.
+
+NOTES
+* The private budget will NOT be active if you upload only index.html; deploy/connect the Worker and D1.
+* If the Cash Wheel service is unavailable during an online spin, the app will prompt a retry instead of silently losing a possible 25th-spin handbag award.
+* GitHub Pages cannot open on a device for the first-ever time offline. Visit online once to populate the service-worker cache.
+* Do not put the Worker SQL schema or its private budget allocations in your PUBLIC GitHub repository.
+* No automated money transfers, claim payment register, or hard device identity rules were added.
+* The final cloud deployment has not been tested from this environment; run a real trial before telling relatives the bag challenge has started.
+
+GITHUB COMMIT MESSAGE
+Pono Family Birthday Hub v1.1.31 - Auto-Hide Bag, Center Spin Button and Mixed Wheel Prizes
+
+UPGRADING FROM AN INSTALLED v1.1.30 WORKER
+* Keep the same D1 database ID and worker name in wrangler.toml. Do not rerun schema.sql or migration.sql.
+* Deploy worker.mjs using `npm run deploy`, then deploy the new public GitHub files (version 1.1.31).
+* Test the read-only public endpoint `https://YOUR-WORKER.workers.dev/api/wheel-state`. It should output only `{"bagAvailable":true}` before the bag is awarded or false afterward.
+* Refresh the public website to make sure the 10-option wheel appears after a claimed handbag.
+* A browser that is fully offline cannot learn that the handbag was awarded on another device until it reconnects.
+* The account's cash budget and daily allocation remain administrator-only under `/api/admin`.
