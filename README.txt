@@ -14,7 +14,7 @@ WHAT IS NEW
 * If fewer than 25 total family spins happen November 14, the counter continues the following days until spin #25. The bag has no December 31 expiry if it still hasn't been won.
 * One winner only: Cloudflare D1 issues each spin a unique global sequence number and identifies sequence #25.
 * The winner gets a 6-digit code with the bag picture to screenshot and send to the family GC.
-* The bag is separate from the previously planned PHP 1,000 cash prize budget. Neither pool total, remaining balance, nor daily allocations are shown to visitors.
+* The bag is separate from the administrator-only cash prize budget. Neither the total, remaining balance, nor daily allocations are shown to visitors.
 * Administrator-only wheel panel now also shows progress toward the 25th spin (or the winning date/code).
 * The existing public birthday viewing, administrator-only editing, Firebase/Gemini Ask Pono, Birthday Fund, family tree, PONO DAILY, 3D clown, songs, and offline app remain in place.
 
