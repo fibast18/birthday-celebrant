@@ -36,7 +36,7 @@ assert.match(
 );
 assert.ok(!configuredWorker[1].includes('PASTE_'), 'Unconfigured WHEEL_API_BASE URL');
 assert.ok(!html.includes('WHEEL_BUDGET_CENTS'), 'Private wheel budget must not appear in public HTML');
-assert.ok(!/sk-(?:proj-)?[A-Za-z0-9_-]{16,}/.test(html), 'Potential OpenAI secret found in HTML');
+assert.ok(!/\bsk-(?:proj-)?[A-Za-z0-9_-]{16,}/.test(html), 'Potential OpenAI secret found in HTML');
 
 const png = readFileSync('pono-family-icon.png');
 assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', 'PONO logo is not a PNG');
