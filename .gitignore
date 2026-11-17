@@ -1,0 +1,16 @@
+# Local development and private deployment files
+.DS_Store
+node_modules/
+.wrangler/
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+*.pem
+*.key
+
+# The cash-prize backend is a separate PRIVATE Cloudflare project.
+Cloudflare-Worker/
+cloudflare-worker/
+private-worker/
