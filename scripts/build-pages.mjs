@@ -24,6 +24,11 @@ const marker = '<meta name="pono-build" content="__PONO_BUILD__">';
 if (!index.includes(marker)) throw new Error('Missing version marker in index.html');
 const rendered = index.replace(marker, '<meta name="pono-build" content="' + build + '">');
 writeFileSync(join(site,'index.html'), rendered);
+// Stamp the service worker on EVERY public release, not just on SW edits.
+// This guarantees new offline caches for updated HTML, images and scripts.
+const worker = readFileSync(join(site,'sw.js'), 'utf8');
+if (!worker.includes('__PONO_BUILD__')) throw new Error('SW build marker missing');
+writeFileSync(join(site,'sw.js'), worker.replace('__PONO_BUILD__', build));
 writeFileSync(join(site,'version.json'), JSON.stringify({build}, null, 2) + '\n');
 writeFileSync(join(site,'.nojekyll'), '');
 if (!rendered.includes('<meta name="pono-build" content="' + build + '">')) {
