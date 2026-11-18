@@ -26,6 +26,7 @@ assert.match(html, /<title>.*Pono Family Birthday Hub.*<\/title>/i, 'App title m
 assert.match(html, /bag\.webp/, 'The handbag picture must be referenced');
 assert.match(workerScript, /bag\.webp/, 'The PWA service worker must cache the handbag picture');
 assert.ok(workerScript.includes('auto-update.js'), 'Offline cache must include the updater');
+assert.ok(workerScript.includes('__PONO_BUILD__'), 'SW must have a per-release cache marker');
 assert.ok(html.includes('<meta name="pono-build" content="__PONO_BUILD__">'), 'Build marker missing');
 assert.ok(html.includes('<script defer src="./auto-update.js"></script>'), 'Update checker not loaded');
 assert.ok(readFileSync('auto-update.js', 'utf8').includes('version.json'), 'Update checker must check release version');
