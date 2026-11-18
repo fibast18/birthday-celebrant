@@ -33,6 +33,7 @@ jobs:
           node --check auto-update.js
           node --check scripts/build-pages.mjs
           node scripts/validate-site.mjs
+          node scripts/test-auto-update.mjs
 
       - name: Stage public files only
         run: |
