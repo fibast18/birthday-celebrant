@@ -1,10 +1,10 @@
-/* PONO Family Birthday Hub v1.1.31 – offline-first shell and read-only cached birthdays.
+/* PONO Family Birthday Hub v1.1.32 – offline-first shell and read-only cached birthdays.
    Hosted on HTTPS GitHub Pages. First installation requires internet.
    Firebase API requests, user account information and Firestore responses are NEVER cached here. */
-const VERSION='v1.1.31-bag';
+const VERSION='v1.1.32-auto-update';
 const CACHE_NAME='pono-birthday-shell-'+VERSION;
 const APP_URL=new URL('./index.html',self.registration.scope).href;
-const SHELL=['./index.html','./manifest.webmanifest','./pono-family-icon.png','./bag.webp'];
+const SHELL=['./index.html','./manifest.webmanifest','./pono-family-icon.png','./bag.webp','./auto-update.js'];
 const MODULES=[
   'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js',
   'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js',
@@ -68,19 +68,21 @@ self.addEventListener('fetch',event=>{
  const local=url.origin===self.location.origin&&url.pathname.startsWith(new URL(self.registration.scope).pathname);
  const isDocument=req.mode==='navigate';
  const isModule=permittedModuleURL(req.url);
- const isStatic=local&&(url.pathname.endsWith('/index.html')||url.pathname.endsWith('/manifest.webmanifest')||url.pathname.endsWith('/pono-family-icon.png')||url.pathname.endsWith('/bag.webp'));
+ const isUpdateScript=local&&url.pathname.endsWith('/auto-update.js');
+ const isStatic=local&&(url.pathname.endsWith('/index.html')||url.pathname.endsWith('/manifest.webmanifest')||url.pathname.endsWith('/pono-family-icon.png')||url.pathname.endsWith('/bag.webp')||isUpdateScript);
  if(!isDocument&&!isModule&&!isStatic)return; // NEVER cache Firebase APIs or auth network responses.
  if(!local&&!isModule)return;
  event.respondWith((async()=>{
    const cache=await caches.open(CACHE_NAME);
    const cacheKey=isDocument?APP_URL:req;
    // Prefer cached app during outages; get latest copy when online.
-   if(isDocument){
+   if(isDocument||isUpdateScript){
+     const target=isDocument?APP_URL:req;
      try{
-       const live=await fetch(req);
-       if(live.ok&&local)await cache.put(APP_URL,live.clone());
+       const live=await fetch(req,{cache:'no-store'});
+       if(live.ok&&local)await cache.put(target,live.clone());
        return live;
-     }catch{const saved=await cache.match(APP_URL);if(saved)return saved;return Response.error()}
+     }catch{const saved=await cache.match(target);if(saved)return saved;return Response.error()}
    }
    const cached=await cache.match(cacheKey);
    if(cached)return cached;
