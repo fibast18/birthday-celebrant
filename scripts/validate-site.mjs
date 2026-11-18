@@ -9,6 +9,7 @@ const siteFiles = [
   'manifest.webmanifest',
   'pono-family-icon.png',
   'bag.webp',
+  'auto-update.js',
 ];
 
 for (const file of siteFiles) {
@@ -24,6 +25,11 @@ assert.match(html, /<!doctype html>/i, 'index.html must be HTML');
 assert.match(html, /<title>.*Pono Family Birthday Hub.*<\/title>/i, 'App title missing');
 assert.match(html, /bag\.webp/, 'The handbag picture must be referenced');
 assert.match(workerScript, /bag\.webp/, 'The PWA service worker must cache the handbag picture');
+assert.ok(workerScript.includes('auto-update.js'), 'Offline cache must include the updater');
+assert.ok(workerScript.includes('__PONO_BUILD__'), 'SW must have a per-release cache marker');
+assert.ok(html.includes('<meta name="pono-build" content="__PONO_BUILD__">'), 'Build marker missing');
+assert.ok(html.includes('<script defer src="./auto-update.js"></script>'), 'Update checker not loaded');
+assert.ok(readFileSync('auto-update.js', 'utf8').includes('version.json'), 'Update checker must check release version');
 assert.equal(manifest.start_url, './index.html', 'Unexpected PWA start URL');
 assert.ok(Array.isArray(manifest.icons) && manifest.icons.length > 0, 'PWA icon missing');
 
@@ -44,6 +50,6 @@ const webp = readFileSync('bag.webp');
 assert.equal(webp.toString('ascii', 0, 4), 'RIFF', 'Bag photo is not RIFF/WebP');
 assert.equal(webp.toString('ascii', 8, 12), 'WEBP', 'Bag photo is not WebP');
 
-console.log('PASS: All 5 website files exist and are valid.');
+console.log('PASS: All 6 website source files exist and are valid.');
 console.log('PASS: Cloudflare Worker URL is configured (no private budget in public HTML).');
 console.log('PASS: PWA manifest, service worker and handbag asset checks passed.');

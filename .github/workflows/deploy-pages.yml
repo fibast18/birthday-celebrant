@@ -30,14 +30,15 @@ jobs:
       - name: Validate the public app
         run: |
           node --check sw.js
+          node --check auto-update.js
+          node --check scripts/build-pages.mjs
           node scripts/validate-site.mjs
+          node scripts/test-auto-update.mjs
 
       - name: Stage public files only
         run: |
-          mkdir -p _site
-          cp index.html sw.js manifest.webmanifest pono-family-icon.png bag.webp _site/
-          touch _site/.nojekyll
-          echo "Publishing only the five approved public website files."
+          node scripts/build-pages.mjs
+          echo "Publishing only approved public assets and a release marker."
 
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request'

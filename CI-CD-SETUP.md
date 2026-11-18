@@ -13,11 +13,13 @@ data and the private Cloudflare Worker/D1 cash-prize system remain untouched.
 5. Verify the site at https://fibast18.github.io/birthday-celebrant/
 
 The workflow runs automatic validation and stages ONLY:
-- index.html
+- index.html (stamped with the current public asset build hash)
 - sw.js
 - manifest.webmanifest
 - pono-family-icon.png
 - bag.webp
+- auto-update.js
+- version.json (generated automatically during deployment)
 
 It never publishes firestore.rules, worker scripts, database SQL, keys, or development files.
 
@@ -58,6 +60,26 @@ If validation fails, fix the problem before pushing.
 The GitHub Actions workflow automatically checks and publishes each push to main.
 For a safer review process, push to a feature branch and open a pull request:
 pull requests run validation but do NOT deploy until merged into main.
+
+## Automatic updates on iPhone, Mac and installed PWA (v1.1.32)
+
+After a successful GitHub Pages deployment, the hosted app checks its own release
+marker on launch, reconnect, foreground/focus, and every two minutes while open.
+When it sees updated public assets, it downloads/verifies the new HTML and
+refreshes itself after 45 seconds without user interaction. It pauses automatic
+refresh during a Lucky Wheel spin, unfinished text input, open edit dialog or
+Ask Pono chat. The web app needs an internet connection to fetch an update; it
+continues operating offline on the previously cached release.
+
+Version values are hashes of the six PUBLIC assets only. README changes and
+other metadata changes do not cause unnecessary website refreshes. This does NOT
+monitor your local Mac files: you still need to save, commit and push changes
+to GitHub (or merge a pull request). A local file cannot deploy itself without
+a configured Mac-side watcher, which this project intentionally does not install.
+
+Existing installed versions without the release checker need to reload the
+website once after the v1.1.32 rollout. Future releases refresh automatically
+when online and safe. No iPhone Home Screen removal/reinstallation is required.
 
 Track progress at https://github.com/fibast18/birthday-celebrant/actions
 Site: https://fibast18.github.io/birthday-celebrant/

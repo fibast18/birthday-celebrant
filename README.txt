@@ -1,8 +1,10 @@
-PONO FAMILY BIRTHDAY HUB — v1.1.31
+PONO FAMILY BIRTHDAY HUB — v1.1.32
 AUTO-HIDE HANDBAG + CENTER BUTTON + MIXED WHEEL OPTIONS
 =====================================================
 
 WHAT IS NEW
+* Automatic in-app updates: detect deployed versions in the background; refresh when online and idle, never during spins, AI requests, open chat or editing.
+* GitHub Actions automatically stamps each release and publishes a version.json marker. Existing data and the private prize Worker are untouched.
 * Tapping the PONO center button triggers exactly the same spin as the large SPIN button; keyboard Enter and Space also work.
 * Five cash prizes and five fun surprises are interleaved around the wheel instead of grouped in two halves.
 * The bag's 11th wedge AND handbag teaser disappear for everyone when the Worker confirms the handbag has been awarded on eligible global spin #25.
