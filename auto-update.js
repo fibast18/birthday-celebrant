@@ -55,17 +55,23 @@
       const response = await fetch(checkURL.href, {cache: 'no-store'});
       if (!response.ok) return;
       const nextHTML = await response.text();
-      if (!nextHTML.includes('<meta name="pono-build" content="' + newBuild + '">')) return;
+      const desiredBuild = newBuild;
+      if (!nextHTML.includes('<meta name="pono-build" content="' + desiredBuild + '">')) return;
+      // The user could start spinning, typing or editing during the fetch.
+      if (!safeToRefresh() || newBuild !== desiredBuild) return;
 
       // Update the offline worker too. Do not delay the website refresh if an
       // iOS/Safari worker update is unavailable or takes longer.
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistration()
+        const refreshWorker = navigator.serviceWorker.getRegistration()
           .then(reg => reg?.update()).catch(() => {});
+        // Don't stall a successful app update on an optional slow SW refresh.
+        await Promise.race([refreshWorker, new Promise(resolve => setTimeout(resolve, 2500))]);
       }
+      if (!safeToRefresh() || newBuild !== desiredBuild) return;
 
       const destination = new URL(location.href);
-      destination.searchParams.set('pono_release', newBuild);
+      destination.searchParams.set('pono_release', desiredBuild);
       location.replace(destination.href);
     } catch (error) {
       console.warn('PONO automatic update will retry after reconnection.', error);
